@@ -1,5 +1,3 @@
-import unittest
-
 def binary_search(path:str, target:str) -> int:
     """Conducts binary search on text files to find target id.
     
@@ -8,10 +6,19 @@ def binary_search(path:str, target:str) -> int:
         target(str): is the target value in text file.
         
     Returns:
-        int: returns the target id as an int."""
+        int: returns the target id as an int.
+        
+    Raises:
+        -99: is an empty list
+        -1: means the target cannot be found in list"""
+
     try:
+        # loads text file
         with open(path, 'r') as f:
             lst = []
+            first_line = f.readline().strip()
+            if first_line == "":
+                return -99
 
             # Storing text lines in list
             for line in f:
@@ -49,22 +56,21 @@ def linear_search(path:str, target:str) -> int:
         target(str): is the target value in text file.
         
     Returns:
+        int: returns the target id as an int.
+
+    Returns:
         int: returns the target id as an int."""
 
-    try:
-        with open(path, 'r') as f:
-            target = str(target)
+    # Loads text file
+    with open(path, 'r') as f:
+        target = str(target)
+        first_line = f.readline().strip()
+        if first_line == "":
+            return -99
 
-            for line in f:
-                line = line.strip()
+        for line in f:
+            line = line.strip()
 
-                if line == target:
-                    return int(line)
-        return -1
-
-    except:
-        return -99
-
-
-if __name__ == "__main__":
-    unittest.main()
+            if line == target:
+                return int(line)
+    return -1
