@@ -1,4 +1,15 @@
-def sort_descending(lst:list[int]) -> list[int]:
+def find_smallest_index(arr:list[int]) -> int:
+    smallest_index = 0
+    smallest = arr[0]
+
+    for i,v in enumerate(arr):
+        if v < smallest:
+            smallest = v
+            smallest_index = i
+    
+    return smallest_index
+
+def sort_descending(arr:list[int]) -> list[int]:
     """ Sorts integer list descending.
 
     Args:
@@ -9,21 +20,12 @@ def sort_descending(lst:list[int]) -> list[int]:
         sorted in descending order.
     """
     result = []
-    dup_lst = lst
-    smallest = dup_lst[0]
 
-    if lst == []:
+    if arr == []:
         return "Empty list"
     
-    for item in dup_lst:
-        if item.str:
-            return "Cannot sort strings"
-    
-    for item in lst:
-        for dup in dup_lst:
-            if dup < item:
-                smallest = dup 
-        
-        result.append(smallest)
+    for x in range(len(arr)):
+        smallest_index = find_smallest_index(arr)
+        result.append(arr.pop(smallest_index))
 
     return [x for x in reversed(list(result))]
